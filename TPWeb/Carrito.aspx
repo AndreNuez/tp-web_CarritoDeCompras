@@ -7,24 +7,9 @@
         <h2>Productos en Carrito</h2>
     </div>
     <div class="col">
-        <%if (ListaCarrito != null)
-            {%>
-        <asp:GridView ID="dgvCarrito" runat="server" CssClass="table">
-        </asp:GridView>
-        <% }
-            else
-            {%>
-        <div class="text-center">
-            <br />
-            <br />
-            <br />
-            <h3>El carrito está vacío.</h3>
-            <p class="text-muted">Agrega productos al carrito desde el catálogo.</p>
-            <br />
-            <br />
-            <br />
-        </div>
 
-        <% }%>
+        <asp:GridView ID="dgvCarrito" runat="server" CssClass="table table-primary">
+        </asp:GridView>
+
     </div>
 </asp:Content>

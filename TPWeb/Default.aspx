@@ -41,7 +41,7 @@
                             <h5 class="card-title"><%#Eval("Nombre") %></h5>
                             <p class="card-text"><%#Eval("Marca") %></p>
                             <h5 class="card-title">Precio: $<%#Eval("Precio") %></h5>
-                            <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-outline-success" runat="server" />
+                            <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-outline-success" runat="server" CommandArgument='<%#Eval("IDArticulo") %>' CommandName="Id Articulo" OnClick="btnAgregarCarrito_Click" />
                             <a class="btn btn-outline-success" href="#">Ver Detalles</a>
                         </div>
                     </div>

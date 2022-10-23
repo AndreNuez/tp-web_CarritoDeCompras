@@ -16,9 +16,38 @@ namespace TPWeb
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulos = negocio.listar();
+
+            if (!IsPostBack)
+            {
+                repRepetidor.DataSource = ListaArticulos;
+                repRepetidor.DataBind();
+            }
             
-            repRepetidor.DataSource = ListaArticulos;
-            repRepetidor.DataBind();
+        }
+
+        protected void btnAgregarCarrito_Click(object sender, EventArgs e)
+        {
+            int IDItem = int.Parse(((Button)sender).CommandArgument);
+
+            Articulo ItemAgregado = new Articulo();
+            ItemAgregado = ListaArticulos.Find(x => x.IDArticulo == IDItem);
+
+            
+            List<ItemCarrito> ListaCarrito = (List<ItemCarrito>)Session["ListaCarrito"] != null ?
+                (List<ItemCarrito>)Session["ListaCarrito"] : ListaCarrito = new List<ItemCarrito>();
+            
+            ItemCarrito NuevoItem = new ItemCarrito();
+            NuevoItem.IDItem = ItemAgregado.IDArticulo;
+            NuevoItem.NombreItem = ItemAgregado.Nombre;
+            NuevoItem.Cantidad = 1;
+            NuevoItem.Precio = ItemAgregado.Precio;
+
+            
+
+            ListaCarrito.Add(NuevoItem);
+            Session.Add("ListaCarrito", ListaCarrito);
+
+            Response.Redirect("Carrito.aspx", false);
         }
     }
 }
