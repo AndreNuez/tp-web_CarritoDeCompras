@@ -34,6 +34,9 @@
 
         <% }%>
     </div>
+    <div class="text-end fs-2"">
+        <asp:Label ID="lblTotalCarrito" runat="server" />
+    </div>
     <div>
         <a class="nav-link" href="Default.aspx">Regresar al catalogo</a>
     </div>

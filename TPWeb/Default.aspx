@@ -3,6 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="d-flex" role="search">
+        <asp:TextBox ID="txtFiltrar" CssClass="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" runat="server" AutoPostBack="true" OnTextChanged="txtFiltrar_TextChanged" />
+    </div>
+    <br />
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -41,8 +45,10 @@
                             <h5 class="card-title"><%#Eval("Nombre") %></h5>
                             <p class="card-text"><%#Eval("Marca") %></p>
                             <h5 class="card-title">Precio: $<%#Eval("Precio") %></h5>
-                            <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-outline-success" runat="server" CommandArgument='<%#Eval("IDArticulo") %>' CommandName="Id Articulo" OnClick="btnAgregarCarrito_Click" />
-                            <a class="btn btn-outline-success" href="#">Ver Detalles</a>
+                            <div class="d-grid mx-auto">
+                                <asp:Button Text="Agregar al Carrito" ID="btnAgregarCarrito" CssClass="btn btn-outline-success" runat="server" CommandArgument='<%#Eval("IDArticulo") %>' CommandName="Id Articulo" OnClick="btnAgregarCarrito_Click" />
+                            </div>
+
                         </div>
                     </div>
                 </div>

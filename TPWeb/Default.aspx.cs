@@ -16,10 +16,11 @@ namespace TPWeb
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             ListaArticulos = negocio.listar();
+            Session.Add("ListaArticulos", ListaArticulos);
 
             if (!IsPostBack)
             {
-                repRepetidor.DataSource = ListaArticulos;
+                repRepetidor.DataSource = Session["ListaArticulos"];
                 repRepetidor.DataBind();
             }
 
@@ -29,12 +30,11 @@ namespace TPWeb
         {
             int IDItem = int.Parse(((Button)sender).CommandArgument);
 
-            Articulo ItemAgregado = new Articulo();
-            ItemAgregado = ListaArticulos.Find(x => x.IDArticulo == IDItem);
-
-
             List<ItemCarrito> ListaCarrito = (List<ItemCarrito>)Session["ListaCarrito"] != null ?
                 (List<ItemCarrito>)Session["ListaCarrito"] : ListaCarrito = new List<ItemCarrito>();
+
+            Articulo ItemAgregado = new Articulo();
+            ItemAgregado = ListaArticulos.Find(x => x.IDArticulo == IDItem);
 
             ItemCarrito NuevoItem = new ItemCarrito();
             NuevoItem.IDItem = ItemAgregado.IDArticulo;
@@ -80,6 +80,14 @@ namespace TPWeb
             }
 
             return -1;
+        }
+
+        protected void txtFiltrar_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> Lista = (List<Articulo>)Session["ListaArticulos"];
+            List<Articulo> ListaFiltrada = Lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltrar.Text.ToUpper()));
+            repRepetidor.DataSource = Session["ListaFiltrada"];
+            repRepetidor.DataBind();
         }
     }
 }
