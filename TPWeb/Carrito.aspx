@@ -10,11 +10,12 @@
     <div class="col text-center">
         <%if (Session["ListaCarrito"] != null)
             {%>
-        <asp:GridView ID="dgvCarrito" runat="server" CssClass="table table-light" AutoGenerateColumns="false">
+        <asp:GridView ID="dgvCarrito" runat="server" CssClass="table table-light" DataKeyNames="IDItem" OnSelectedIndexChanged="dgvCarrito_SelectedIndexChanged" AutoGenerateColumns="false">
             <Columns>
+                <asp:CommandField ShowSelectButton="true" SelectText="Quitar" HeaderText=" " />
                 <asp:BoundField HeaderText="Nombre" DataField="NombreItem" />
                 <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
-                <asp:BoundField HeaderText="Precio" DataField="Precio" />
+                <asp:BoundField HeaderText="Precio" DataField="Precio" />   
             </Columns>
         </asp:GridView>
         <% }

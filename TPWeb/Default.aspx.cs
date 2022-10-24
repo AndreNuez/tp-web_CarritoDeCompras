@@ -50,6 +50,7 @@ namespace TPWeb
                 if (posItem != -1)
                 {
                     ListaCarrito[posItem].Cantidad++;
+                    ListaCarrito[posItem].Precio += NuevoItem.Precio;
                 }
                 else
                 {
